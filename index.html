@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SwitchMe Interview</title>
+    <!-- css file -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- angular js cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+
+    <!-- external js  -->
+    <script src="./js/main.js"></script>
+  </head>
+  <body ng-app="builderApp" ng-controller="builderControl">
+    <h1>SwitchMe Javascript Interview Question Paper</h1>
+
+    <div class="mb-30">
+      <div>List of API's</div>
+      <div>
+        <a href="https://interview.switchme.in/js/2019/builder_json.php"
+          >Builder API - Contains list of builders</a
+        >. Array's key is builder id and value is builder name
+      </div>
+      <div>
+        <a href="https://interview.switchme.in/js/2019/city_json.php"
+          >City API - Contains list of cities</a
+        >. Array's key is city id and value is city name
+      </div>
+      <div>
+        <a href="https://interview.switchme.in/js/2019/price_json.php"
+          >Price API - Contains list of price of properties</a
+        >. Array's key is project id and value is price of project
+      </div>
+      <div>
+        <a href="https://interview.switchme.in/js/2019/project_json.php"
+          >Project API - Contains list of projects</a
+        >. Multidimensional array. Array key is builder id and value is another
+        array
+      </div>
+    </div>
+
+    <div class="mb-30">
+      <div>
+        Questions: Use above mentioned API's to solve below mentioned quetions
+      </div>
+      <div>
+        1: Display all the project with builder name, project name, city and
+        price in Builders Project List Table
+      </div>
+      <div>2: Data in "City Filter 1" comes from City Api</div>
+      <div>
+        3: On Changing "City Filter 1", Change data of "Builders Filter 2",
+        "Price Filter 3" and "Builders Project List Table"
+      </div>
+      <div>
+        4. On check 'All' in "Builders Filter 2", auto check all the builders
+        boxes, on uncheck any builders uncheck 'All'
+      </div>
+      <div>
+        5: On Check, Uncheck any builder in "Builders Filter 2", Change data of
+        "Price Filter 3" and "Builders Project List Table"
+      </div>
+      <div>
+        6: On check 'All' in "Price Filter 3", auto check all the price boxes,
+        on uncheck any price uncheck 'All'
+      </div>
+      <div>
+        7: On Check, Uncheck any Price in "Price Filter 3", change data of
+        "Builders Project List Table"
+      </div>
+      <div>
+        8: On select dropdown data of 'Price Sort Filter 4', change data of
+        "Builders Project List Table"
+      </div>
+      <div><b>Note: Use Jquery or angularjs1</b></div>
+      <div><b>Note: Builders Filter 2 data comes from 'Builder API'</b></div>
+      <div><b>Note: Price Filter 3 data comes from 'Price API'</b></div>
+    </div>
+
+    <div class="mb-30">
+      ###################################################################################################################
+    </div>
+
+    <div>
+      <div>City Filter 1</div>
+      <select ng-click="selectedCities($event)">
+        <option>All City</option>
+        <option ng-repeat="oneCities in cities">{{ oneCities }}</option>
+      </select>
+    </div>
+
+    <div class="builder_checkbox">
+      <div>Builders Filter 2</div>
+      <div><input type="checkbox"   ng-checked="builderAllCheck"/>All</div>
+      <div ng-repeat="builder in builderData">
+        <input
+          type="checkbox"
+          name="selectedBuilder[]"
+          value="{{builder.builderName}}"
+          ng-checked="builderFilterCheck"
+          ng-click="selectedBuilder(builder)"
+        />{{ builder.builderName }}
+      </div>
+    </div>
+
+    <div class="price_checkbox">
+      <div>Price Filter 3</div>
+      <div><input type="checkbox" ng-checked="priceAllCheck" />All</div>
+      <div ng-repeat="projectPrice in priceData">
+        <input type="checkbox" 
+        name="selectedPrices[]"
+          value="{{projectPrice.price}}"
+          ng-checked="priceFilterCheck"
+          ng-click="selectedPrices(projectPrice)"
+        />{{ projectPrice.price }}
+      </div>
+
+      <!-- <div><input type="checkbox" />3 CR</div>
+      <div><input type="checkbox" checked />4 CR</div> -->
+    </div>
+
+    <div>
+      <div>Price Sort Filter 4</div>
+      <select ng-click="selectedPriceSort($event)">
+        <option value="All">All</option>
+        <option value="LOW">Low to High</option>
+        <option value="HIGH">High to Low</option>
+      </select>
+    </div>
+
+    <div ng-if="tableData.length > 0">
+      <h2>Builders Project List Table</h2>
+      <table>
+        <tr>
+          <th>Builder</th>
+          <th>Project</th>
+          <th>City</th>
+          <th>Price</th>
+        </tr>
+        <tr ng-repeat="project in tableData | orderBy:priceOrder">
+          <td>{{ project.builderName }}</td>
+          <td>{{ project.project }}</td>
+          <td>{{ project.cityName }}</td>
+          <td>{{ project.price }}</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

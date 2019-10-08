@@ -1,0 +1,24 @@
+.builder_checkbox {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .price_checkbox {
+    margin-bottom: 30px;
+  }
+  .mb-30 {
+    margin-bottom: 30px;
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td,
+  th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+  tr:nth-child(even) {
+    background-color: #ddd;
+  }
