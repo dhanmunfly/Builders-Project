@@ -91,7 +91,7 @@
 
     <div class="builder_checkbox">
       <div>Builders Filter 2</div>
-      <div><input type="checkbox"   ng-checked="builderAllCheck"/>All</div>
+      <div><input type="checkbox"   ng-checked="builderAllCheck" ng-click="selectAll('builder')"/>All</div>
       <div ng-repeat="builder in builderData">
         <input
           type="checkbox"
@@ -105,7 +105,7 @@
 
     <div class="price_checkbox">
       <div>Price Filter 3</div>
-      <div><input type="checkbox" ng-checked="priceAllCheck" />All</div>
+      <div><input type="checkbox" ng-checked="priceAllCheck" ng-click="selectAll('price')"/>All</div>
       <div ng-repeat="projectPrice in priceData">
         <input type="checkbox" 
         name="selectedPrices[]"
